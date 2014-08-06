@@ -2,8 +2,7 @@ import rarfile
 import sys
 
 base=15008457593
-pos1=[1, 4, 5, 8, 9, 11]
-pos2=[2, 3, 6, 7, 10]
+pos=[1, 4, 5, 8, 9, 11, 2, 3, 6, 7, 10]
 
 #Check pwd with only one bit mistake,this is the most possible one
 #V1.0
@@ -20,23 +19,16 @@ def pwd_gen_11_1(func):
     
 #This is write after using 3,4,4 rule, I'd rather use the upper one
 def pwd_gen_11_1_2(func):
-    def _pwd_gen_11_1(rf):
-        for i in pos1:
+    def _pwd_gen_11_2(rf):
+        for i in pos:
             for j in range(0, 9):
                 if str(base)[i-1]!=str(j):
                 #if i!=(base%(10**i)-base%(10**(i-1)))
                    pwd=str(base-base%(10**i)+base%(10**(i-1))+j*(10**i))
                    if func(rf, pwd)==1:
                        sys.exit()
-        for i in pos2:
-            for j in range(0, 9):
-                if str(base)[i-1]!=str(j):
-                #if i!=(base%(10**i)-base%(10**(i-1)))
-                   pwd=str(base-base%(10**i)+base%(10**(i-1))+j*(10**i))
-                   if func(rf, pwd)==1:
-                       sys.exit()
-    return _pwd_gen_11_1
-    
+    return _pwd_gen_11_2
+
 def pwd_gen_12(func):
     pass
 
